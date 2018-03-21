@@ -1,0 +1,59 @@
+.my-login-layout{
+    background: #d2d6de;
+}
+
+.my-login-container{
+    margin-left: 38%;
+    margin-top: 50px;
+}
+
+.my-center{
+    margin-top: 20%;
+    margin-left: 38%;
+}
+
+.my-header{
+    background-image: url("../images/title.png");
+    text-align: center;
+    color: white;
+    font-size: 24px;
+    height: 52px;
+    line-height: 48px;
+}
+
+.my-form-group{
+    display: block;
+    width: 70%;
+    height: 34px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.btn.btn-sm.my-btn{
+    background-image: url("../images/button.png")!important;
+    border-color: inherit;
+    height: 40px;
+    margin-right: 50px;
+}
+
+.my-ace{
+    position: absolute;
+    left: 60px;
+    z-index: 12;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+.my-lbl{
+    margin-left: 70px;
+}
+
+#loginform-username{
+    background: url("../images/loguser.png") left no-repeat;
+    padding-left: 53px;
+}
+
+#loginform-password{
+    background: url("../images/logpwd.png") left no-repeat;
+    padding-left: 53px;
+}
