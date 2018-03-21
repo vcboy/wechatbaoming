@@ -110,7 +110,18 @@ class JiandingController extends CController
     {
         $model = new Jianding();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            $educationsj = Yii::$app->request->post('educationsj');
+            $educationxx = Yii::$app->request->post('educationxx');
+            $educationzy = Yii::$app->request->post('educationzy');
+            $educationxl = Yii::$app->request->post('educationxl');
+            foreach ($educationsj as $key => $value) {
+                $education[] = [$educationsj[$key],$educationxx[$key],$educationzy[$key],$educationxl[$key]];
+            }
+            $edustr = json_encode($education);
+            $model->education = $edustr;
+            //exit();
+            $model->save();
             return $this->redirect(['index']);
         } else {
             return $this->render('create', [

@@ -43,10 +43,10 @@ use yii\helpers\Url;
         <div style="float: left;width:10%"><label class="control-label" style="width:100%" for="jianding-education">教育经历</label></div>
         <div id="j-education" style="float: left;">
             <div id="educationtemplate"  class="edute"  style="margin: 0px 0px 15px 0px;">
-            时间:<input type="text" id="jianding-education_time" class="form-control" name="Jianding[education]"  size="20" style="width: 150px;">
-            学校:<input type="text" id="jianding-education_school" class="form-control" name="Jianding[education]"  style="width: 150px;" >
-            专业:<input type="text" id="jianding-education_zy" class="form-control" name="Jianding[education]"  style="width: 150px;" >
-            学历学位:<input type="text" id="jianding-education_xlxw" class="form-control" name="Jianding[education]"  style="width: 150px;" >
+            时间:<input type="text" id="jianding-education_time" class="form-control" name="educationsj[]"  size="20" style="width: 150px;">
+            学校:<input type="text" id="jianding-education_school" class="form-control" name="educationxx[]"  style="width: 150px;" >
+            专业:<input type="text" id="jianding-education_zy" class="form-control" name="educationzy[]"  style="width: 150px;" >
+            学历学位:<input type="text" id="jianding-education_xlxw" class="form-control" name="educationxl[]"  style="width: 150px;" >
             </div>
         </div>
         <div style="float: left;">
