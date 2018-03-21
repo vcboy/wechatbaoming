@@ -42,7 +42,7 @@ use yii\helpers\Url;
     <div class="form-group field-jianding-education" >
         <div style="float: left;width:10%"><label class="control-label" style="width:100%" for="jianding-education">教育经历</label></div>
         <div id="j-education" style="float: left;">
-            <div id="educationtemplate" style="margin: 0px 0px 15px 0px;">
+            <div id="educationtemplate"  class="edute"  style="margin: 0px 0px 15px 0px;">
             时间:<input type="text" id="jianding-education_time" class="form-control" name="Jianding[education]"  size="20" style="width: 150px;">
             学校:<input type="text" id="jianding-education_school" class="form-control" name="Jianding[education]"  style="width: 150px;" >
             专业:<input type="text" id="jianding-education_zy" class="form-control" name="Jianding[education]"  style="width: 150px;" >
@@ -50,8 +50,8 @@ use yii\helpers\Url;
             </div>
         </div>
         <div style="float: left;">
-            <a class="btn btn-primary" href="#"  onclick="javascript:addEducation()">增加</a>
-            <a class="btn btn-primary" href="#"  onclick="javascript:rmEducation()">减少</a>
+            <a class="btn btn-primary" href="#"  id="addEdu">增加</a>
+            <a class="btn btn-primary" href="#"  id="rmEdu">减少</a>
         </div>
 
     </div>
@@ -59,7 +59,7 @@ use yii\helpers\Url;
     <div class="form-group field-jianding-job" >
         <div style="float: left;width:10%"><label class="control-label" style="width:100%" for="jianding-job">工作经历</label></div>
         <div id="j-job" style="float: left;">
-            <div id="jobtemplate" style="margin: 0px 0px 15px 0px;">
+            <div id="jobtemplate" class="jobte" style="margin: 0px 0px 15px 0px;">
             时间:<input type="text" id="jianding-job_time" class="form-control" name="Jianding[job]"  size="20" style="width: 150px;">
             学校:<input type="text" id="jianding-job_school" class="form-control" name="Jianding[job]"  style="width: 150px;" >
             专业:<input type="text" id="jianding-job_zy" class="form-control" name="Jianding[job]"  style="width: 150px;" >
@@ -85,8 +85,31 @@ use yii\helpers\Url;
 </div>
 
 <script type="text/javascript">
+    $(function(){
+        $("#addEdu").click(function(){
+            var len;
+            var educontent = $("#educationtemplate").clone();
+            $("#j-education").append(educontent);
+            $('#rmEdu').attr('disabled', false);
+            len = $(".edute").length;
+            if(len == 5) {
+                $("#addEdu").attr('disabled',true);
+            }
+            console.log(len);
+        })
+
+        $("#rmEdu").click(function(){
+            var len = $(".edute").length;
+            if(len-1 == 1)
+                $('#rmEdu').attr('disabled', true);
+            $(".edute").eq(-1).remove();
+            $("#addEdu").attr('disabled',false);
+        })
+
+        $("#rmEdu").attr('disabled',true);
+    })
     function addEducation(){
-        var educontent = $("#educationtemplate").clone();
+        var educontent = $(".educationtemplate").clone();
         $("#j-education").append(educontent);
     }
 </script>
