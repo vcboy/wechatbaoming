@@ -37,29 +37,43 @@ use yii\helpers\Url;
     <?//= $form->field($model, 'zsdj')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'tel')->textInput(['maxlength' => true]) ?>
-
+    <?= $form->field($model, 'score')->textInput() ?> 
     <?//= $form->field($model, 'education')->textarea(['rows' => 6]) ?>
-    <div class="form-group field-jianding-education" id="j-education">
-        <label class="control-label" for="jianding-education" onclick="addEducation()">教育经历</label>
-        <div id="educationtemplate"><div></div>
-        时间:<input type="text" id="jianding-education_time" class="form-control" name="Jianding[education]"  size="20" style="width: 150px;">
-        学校:<input type="text" id="jianding-education_school" class="form-control" name="Jianding[education]"  style="width: 150px;" >
-        专业:<input type="text" id="jianding-education_zy" class="form-control" name="Jianding[education]"  style="width: 150px;" >
-        学历学位:<input type="text" id="jianding-education_xlxw" class="form-control" name="Jianding[education]"  style="width: 150px;" >
+    <div class="form-group field-jianding-education" >
+        <div style="float: left;width:10%"><label class="control-label" style="width:100%" for="jianding-education">教育经历</label></div>
+        <div id="j-education" style="float: left;">
+            <div id="educationtemplate" style="margin: 0px 0px 15px 0px;">
+            时间:<input type="text" id="jianding-education_time" class="form-control" name="Jianding[education]"  size="20" style="width: 150px;">
+            学校:<input type="text" id="jianding-education_school" class="form-control" name="Jianding[education]"  style="width: 150px;" >
+            专业:<input type="text" id="jianding-education_zy" class="form-control" name="Jianding[education]"  style="width: 150px;" >
+            学历学位:<input type="text" id="jianding-education_xlxw" class="form-control" name="Jianding[education]"  style="width: 150px;" >
+            </div>
+        </div>
+        <div style="float: left;">
+            <a class="btn btn-primary" href="#"  onclick="javascript:addEducation()">增加</a>
+            <a class="btn btn-primary" href="#"  onclick="javascript:rmEducation()">减少</a>
+        </div>
+
+    </div>
+    <div style="clear: both"></div>
+    <div class="form-group field-jianding-job" >
+        <div style="float: left;width:10%"><label class="control-label" style="width:100%" for="jianding-job">工作经历</label></div>
+        <div id="j-job" style="float: left;">
+            <div id="jobtemplate" style="margin: 0px 0px 15px 0px;">
+            时间:<input type="text" id="jianding-job_time" class="form-control" name="Jianding[job]"  size="20" style="width: 150px;">
+            学校:<input type="text" id="jianding-job_school" class="form-control" name="Jianding[job]"  style="width: 150px;" >
+            专业:<input type="text" id="jianding-job_zy" class="form-control" name="Jianding[job]"  style="width: 150px;" >
+            </div>
+        </div>
+        <div style="float: left;">
+            <a class="btn btn-primary" href="#"  onclick="javascript:addEducation()">增加</a>
         </div>
 
     </div>
 
-    <div class="form-group field-jianding-job">
-    <label class="control-label" for="jianding-job">工作经历</label>
-    <input type="text" id="jianding-birthday" class="form-control" name="Jianding[education]"  maxlength="32" >
-
-    <div class="help-block"></div>
-    </div>
-
     <?//= $form->field($model, 'job')->textarea(['rows' => 6]) ?>
     
-    <?= $form->field($model, 'score')->textInput() ?> 
+    <div style="clear: both"></div>
 
     <div class="form-group">
     <?=  Html::submitButton($model->isNewRecord ? '保存' : '更新', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
