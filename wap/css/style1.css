@@ -1,0 +1,422 @@
+.container .navbar-header{
+	text-align: center;
+}
+
+.p_newslist{
+	clear: both;
+	padding: 7px 2px;
+}
+
+
+.p_newslist li {
+	height: 27px;
+	line-height: 27px;
+	padding-right: 10px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	font-size: 18px;
+	position: relative;
+}
+
+.news{
+	margin: 5px 0px;
+}
+
+.nav-tabs{
+	font-weight: bold;
+	font-size: 18px;
+}
+
+.nav-tabs li{
+	padding-left: 10px;
+}
+
+.art_content{
+	font-size: 18px;
+	line-height: 26px;
+	word-wrap:break-word;
+}
+
+.h2{
+  font-size: 20px !important;
+  font-weight: 600 !important;
+  padding-top: 0px;
+  margin-top: 0px;
+}
+.navbar-brand{
+	padding: 15px 15px;
+	font-size: 18px;
+	line-height: 20px;
+	display: block;
+	float: none;
+	height: initial;
+	width: 60%;
+	float: left;
+
+}
+
+.bleft{
+	float: left !important;
+	margin-left: 15px;
+	margin-right: 0px !important;
+	padding: 4px 11px;
+}
+
+.p_list{
+	clear: both;
+	padding: 0px 15px;
+	margin-bottom: 0px;
+}
+
+.p_list li {
+	height: 27px;
+	line-height: 27px;
+	padding-right: 10px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	font-size: 18px;
+	position: relative;
+}
+
+#infscr-loading{
+	font-size: 18px;
+	padding: 10px 0px;
+	text-align: center;
+}
+
+/**
+ 活动
+ */
+.hd_list li{
+	height: 100px;
+	padding-top: 5px;
+	line-height: 30px;
+	padding-right: 10px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	font-size: 18px;
+	position: relative;
+	border-bottom: 1px solid #ccc;
+}
+
+.hd_list{
+	clear: both;
+	padding: 0px 15px;
+	margin-bottom: 0px;
+}
+
+.hd_list p{
+	margin: 0px;
+	font-size: 15px;
+}
+
+.hdzp{
+	/* border: 1px solid #ccc; */
+}
+
+.zp_list{
+	clear: both;
+	padding: 0px 5px;
+	margin-bottom: 0px;
+}
+
+.zp_list li{
+	height: 100px;
+	padding-top: 5px;
+	line-height: 30px;
+	padding-right: 10px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	font-size: 18px;
+	position: relative;
+	border-bottom: 1px solid #ccc;
+}
+
+.zp_list p{
+	margin: 0px;
+	font-size: 15px;
+}
+
+.card{
+	padding-bottom: 10px;
+}
+
+.commentdiv{
+	padding-top:5px;
+}
+
+.comments{
+	float: left;
+	font-size: 15px;
+	padding: 10px;
+	width: 100%;
+}
+
+.comments div:first-child{
+	width: 50%;
+	float: left;
+	padding-top: 5px;
+}
+
+.op_remind {
+	position: fixed;
+	top: 50px;
+	left: 0;
+	display: none;
+	z-index: 999;
+	opacity: 1;
+	width: 100%;
+	height: 44px;
+	line-height: 44px;
+	font-size: 14px;
+	text-align: center;
+	color: #fff;
+	background: rgba(68,68,68,.9);
+}
+
+.pl_list{
+	clear: both;
+	padding: 0px 5px;
+	margin-bottom: 0px;
+}
+
+.pl_list li{
+	height: 100px;
+	padding-top: 5px;
+	line-height: 30px;
+	padding-right: 10px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	font-size: 15px;
+	position: relative;
+	border-bottom: 1px solid #ccc;
+}
+.zj_type{
+	height: 30px;
+	/*padding-top: 5px;
+	line-height: 30px;*/
+	margin-left:-30px;
+	padding-right: 10px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	font-size: 15px;
+	position: relative;
+	border-bottom: 3px solid #ccc;
+}
+.zj_list li{
+	height: 70px;
+	padding-top: 5px;
+	margin-left:-60px;
+	line-height: 30px;
+	padding-right: 10px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	font-size: 15px;
+	position: relative;
+	border-bottom: 1px solid #ccc;
+}
+
+.book_type{
+	height: 30px;
+	/*padding-top: 5px;
+	line-height: 30px;*/
+	margin-left:-30px;
+	padding-right: 10px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	font-size: 15px;
+	position: relative;
+	border-bottom: 3px solid #ccc;
+}
+
+.loginli{
+
+}
+
+.loginli div{
+	float: left;
+}
+
+.loginli a{
+	float: left;
+}
+
+.checkbox span{
+	color: #ee5364;
+}
+
+.icons{
+	width: 100px;
+	height: 100px;
+	display: inline-block;
+  	border-radius: 50%;
+  	line-height: 100px;
+	color: #fff;
+	font-size: 16px;
+}
+
+.color1{
+	 background: #0d8fdb
+}
+
+.color2{
+	background: #39dbac;
+}
+
+li.myfriends {
+  display: inline-block;
+  width: 60px;
+  height: 82px;
+  padding: 0px; 
+  margin: 5px;
+    border-bottom: 0px;
+}
+
+.myfriends img{
+	border-radius: 50%;
+	width: 60px;
+	height: 60px;
+}
+
+.myfriends .name{
+	width: 100%;
+	text-align: center;
+	font-size: 12px;
+}
+
+.carousel .item {
+  height: 450px !important;
+  background-color: #fff !important;
+  padding: 0px 45px;
+  font-size: 16px;
+  line-height: 35px;
+}
+
+.carousel {
+  height: 450px !important;
+  margin-bottom: 60px;
+}
+
+.carousel-control.right {
+	background-image:none !important;
+}
+
+.glyphicon-chevron-right:before{
+	color:#000;
+}
+
+.carousel-control.left{
+	background-image:none !important;
+}
+
+.glyphicon-chevron-left:before {
+  color: #000;
+}
+
+.opts{
+	display: inline-block;
+  	width: 22%;
+}
+
+
+.carousel-control .glyphicon-chevron-left, .carousel-control .glyphicon-chevron-right{
+  top: 75% !important;
+}
+
+.inp{
+	width: 20px;
+	height: 20px;
+}
+
+.btn-submit{
+position: absolute;
+  right: 8px;
+  z-index: 10;
+}
+
+.score {
+  width: 125px;
+  height: 50px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  color: red;
+}
+
+.bookli{
+	/*height: 135px !important;*/
+}
+
+.bookimg{
+	display: inline-block;
+}
+
+.bookimg img{
+	width: 70px;
+	height: 100px;
+}
+
+.bookdes{
+	padding: 5px;
+	display: inline-block;
+}
+
+.bookcom{
+	white-space: nowrap;
+  	overflow: hidden;
+  	text-overflow: ellipsis;
+  	font-size: 14px;
+}
+
+.bookcomopen{
+	white-space:normal;
+	font-size: 14px;
+}
+
+.zp_list1 {
+  clear: both;
+  padding: 0px 5px;
+  margin-bottom: 0px;
+}
+
+.zp_list1 li{
+	height: 150px;
+	  padding-top: 5px;
+	  line-height: 30px;
+	  padding-right: 10px;
+	  overflow: hidden;
+	  white-space: nowrap;
+	  text-overflow: ellipsis;
+	  font-size: 18px;
+	  position: relative;
+	  border-bottom: 1px solid #ccc;
+}
+
+.btn_arr span{
+    height:40px;
+    line-height:40px;
+    width:50%;
+    display:inline-block;
+    text-align:center;
+}
+
+.playing{
+    color:#f00000 !important;
+    font-weight:bolder !important;
+}
+
+.playing span{
+    background:none;
+    color:#F00000;
+    font-size:normal;
+}
+
+

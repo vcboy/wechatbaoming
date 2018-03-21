@@ -1,0 +1,5 @@
+.art_content img{
+	start:"expression(this.onload=function(){this.style.width = this.width > 300 ? "300px" : this.width;})";
+	max-width:300px;
+	height:auto !important;
+}

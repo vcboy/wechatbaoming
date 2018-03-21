@@ -1,0 +1,1 @@
+<?php exit();?>{"api_ticket":"IpK_1T69hDhZkLQTlwsAX8eYlXB7NFg_Ba1VrDHuitxrJ03TzQYvysyyudY7dQWiMhVEZlN2zoFvGcM4iSBTwg","expire_time":1487847145}
