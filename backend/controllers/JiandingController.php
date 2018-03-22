@@ -133,7 +133,7 @@ class JiandingController extends CController
             $model->job = $jobstr;
             //exit();
             $model->save();
-            return $this->redirect(['index']);
+            return $this->redirect(['nosh']);
         } else {
             return $this->render('create', [
                 'model' => $model,

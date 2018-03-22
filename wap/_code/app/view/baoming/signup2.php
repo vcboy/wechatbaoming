@@ -12,7 +12,7 @@
       echo "$('input[name=sex][value=".$member['sex']."]').attr('checked','checked');\n";
       echo "$('#nation').val('".$member['nation']."');\n";
       echo "$('#sfz').val('".$member['cid']."');\n";
-      echo "$('#company').val('".$sigupinfo['company']."');\n";
+      echo "$('#phone').val('".$member['tel']."');\n";
       if($member['birthday']){
         $birarr = explode('/',$member['birthday']);
         echo "$('#year').val('".$birarr[0]."');\n";
@@ -20,7 +20,59 @@
         echo "$('#day').val('".$birarr[2]."');\n";
       }
     }
+    if(isset($sigupinfo)){
+      echo "$('#company').val('".$sigupinfo['company']."');\n";    
+      echo "var edu = '".$sigupinfo['education']."';\n";
+      echo "var job = '".$sigupinfo['job']."';\n";
+      echo "var eduobj = JSON.parse(edu);\n";
+      echo "console.log(eduobj);\n";
+
+      echo "var jobobj = JSON.parse(job);\n";
     ?>
+      for(var i in eduobj){
+        n = parseInt(i)+1;
+          console.log(n);
+          var newElem1 = $('#template').clone().html(); 
+          newElem = newElem1.replace(/{n}/g,n);
+          $(newElem).appendTo('#clonetd');
+          $('#datetimes_edu'+n).focus();
+          $('#datetimes_edu'+n).val(eduobj[i][0]);
+          $('#school_edu'+n).val(eduobj[i][1]);
+          $('#major_edu'+n).val(eduobj[i][2]);
+          $('#education_edu'+n).val(eduobj[i][3]);
+      }
+
+      for(var i in jobobj){
+        n = parseInt(i)+1;
+          console.log(n);
+          var newElem2 = $('#template_work').clone().html(); 
+        newElem = newElem2.replace(/{n}/g,n);
+        $(newElem).appendTo('#clonetd_work');
+        $('#datetimes_work'+n).focus();
+        $('#datetimes_work'+n).val(jobobj[i][0]);
+        $('#school_work'+n).val(jobobj[i][1]);
+        $('#major_work'+n).val(jobobj[i][2]);
+        //$('#datetimes_work'+n).val(jobobj[i][3]);
+      }
+    <?
+    }else{
+      echo "init();\n";
+    }
+    ?>
+      
+
+     function init(){
+        var newElem1 = $('#template').clone().html(); 
+        newElem = newElem1.replace(/{n}/g,1);
+        $(newElem).appendTo('#clonetd');
+        $('#datetimes_edu1').focus();
+
+        
+        var newElem2 = $('#template_work').clone().html(); 
+        newElem = newElem2.replace(/{n}/g,1);
+        $(newElem).appendTo('#clonetd_work');
+        $('#datetimes_work1').focus();
+    };
   })
 </script>
 <script>
@@ -350,10 +402,10 @@
                         <input id="major_work{n}" name="major_work{n}" type="text" placeholder="" class="input_ln form-control">
                       </div>
 
-                      <div class="form-group">
+                      <!-- <div class="form-group">
                         <label class="label_sn control-label" for="last_name">学历学位:</label>
                         <input id="education_work{n}" name="education_work{n}" type="text" placeholder="" class="input_ln form-control">
-                      </div>
+                      </div> -->
                         
                       <!-- Select Basic -->
                       <!-- <label class="label_ttl control-label" for="title">学历学位:</label>

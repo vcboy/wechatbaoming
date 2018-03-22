@@ -343,7 +343,7 @@ a:hover {
 }
 
 .fs{
-	    border: 1px solid silver;
+	border-top: 1px solid silver;
     padding: 5px;
 }
 

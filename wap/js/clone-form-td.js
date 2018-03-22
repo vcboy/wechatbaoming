@@ -29,20 +29,7 @@ THE SOFTWARE.
 */
 $(function () {
     //console.log('clone td');
-    init();
-
-     function init(){
-        var newElem1 = $('#template').clone().html(); 
-        newElem = newElem1.replace(/{n}/g,1);
-        $(newElem).appendTo('#clonetd');
-        $('#datetimes_edu1').focus();
-
-        
-        var newElem2 = $('#template_work').clone().html(); 
-        newElem = newElem2.replace(/{n}/g,1);
-        $(newElem).appendTo('#clonetd_work');
-        $('#company').focus();
-    };
+    
     //教育经历
     $('#btnAdd').click(function () {
         //console.log('clone td');

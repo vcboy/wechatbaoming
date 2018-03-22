@@ -68,8 +68,8 @@ use yii\helpers\Url;
         ?>
         </div>  
         <div style="float: left;">
-            <a class="btn btn-primary" href="#"  id="addEdu">增加</a>
-            <a class="btn btn-primary" href="#"  id="rmEdu">减少</a>
+            <div class="btn btn-xs btn-danger" href="#"  id="addEdu"> + </div>
+            <div class="btn btn-xs btn-danger" href="#"  id="rmEdu"> - </div>
         </div>
 
     </div>
@@ -100,8 +100,8 @@ use yii\helpers\Url;
         ?>    
         </div>
         <div style="float: left;">
-            <a class="btn btn-primary" href="#"  id="addJob">增加</a>
-            <a class="btn btn-primary" href="#"  id="rmJob">减少</a>
+            <div class="btn btn-xs btn-danger"   id="addJob"> + </div>
+            <div class="btn btn-xs btn-danger" href="#"  id="rmJob"> - </div>
         </div>
 
     </div>
