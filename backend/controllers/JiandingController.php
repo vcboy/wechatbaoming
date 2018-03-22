@@ -115,11 +115,22 @@ class JiandingController extends CController
             $educationxx = Yii::$app->request->post('educationxx');
             $educationzy = Yii::$app->request->post('educationzy');
             $educationxl = Yii::$app->request->post('educationxl');
+
+            $jobsj = Yii::$app->request->post('jobsj');
+            $jobxx = Yii::$app->request->post('jobxx');
+            $jobzy = Yii::$app->request->post('jobzy');
+
             foreach ($educationsj as $key => $value) {
                 $education[] = [$educationsj[$key],$educationxx[$key],$educationzy[$key],$educationxl[$key]];
             }
             $edustr = json_encode($education);
             $model->education = $edustr;
+
+            foreach ($jobsj as $key => $value) {
+                $job[] = [$jobsj[$key],$jobxx[$key],$jobzy[$key]];
+            }
+            $jobstr = json_encode($job);
+            $model->job = $jobstr;
             //exit();
             $model->save();
             return $this->redirect(['index']);
@@ -141,12 +152,49 @@ class JiandingController extends CController
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())/* && $model->save()*/) {
+            $educationsj = Yii::$app->request->post('educationsj');
+            $educationxx = Yii::$app->request->post('educationxx');
+            $educationzy = Yii::$app->request->post('educationzy');
+            $educationxl = Yii::$app->request->post('educationxl');
+
+            $jobsj = Yii::$app->request->post('jobsj');
+            $jobxx = Yii::$app->request->post('jobxx');
+            $jobzy = Yii::$app->request->post('jobzy');
+
+            foreach ($educationsj as $key => $value) {
+                $education[] = [$educationsj[$key],$educationxx[$key],$educationzy[$key],$educationxl[$key]];
+            }
+            $edustr = json_encode($education);
+            $model->education = $edustr;
+
+            foreach ($jobsj as $key => $value) {
+                $job[] = [$jobsj[$key],$jobxx[$key],$jobzy[$key]];
+            }
+            $jobstr = json_encode($job);
+            $model->job = $jobstr;
+            //exit();
+            $model->save();
             return $this->redirect(['index']);
         } else {
+
+            $edustr = $model->education;
+            $jobstr = $model->job;
+            $educationarr = $jobarr = [];
+            if($edustr){
+                $educationarr = json_decode($edustr,true);
+            }
+
+            if($jobstr){
+                $jobarr = json_decode($jobstr,true);
+            }
+            /*var_dump($jobarr);
+            exit();*/
             return $this->render('update', [
                 'model' => $model,
                 'planlist' => $this->arr,
+                'eduarr' => $educationarr,
+                'jobarr' => $jobarr,
             ]);
         }
     }
