@@ -300,7 +300,7 @@
           $job_time = $job[$i][0];
           $job_school = $job[$i][1];
           $job_zy = $job[$i][2];
-          $job_xl = $job[$i][3];
+          //$job_xl = $job[$i][3];
         }
 
       ?>
@@ -322,7 +322,7 @@
         </td>
         <td>
           <p>
-            <?=$job_xl?>
+            <?//=$job_xl?>
           </p>
         </td>
       </tr>

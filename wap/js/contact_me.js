@@ -85,7 +85,11 @@ $(function() {
                 },
                 cache: false,
                 success: function() {
-                    // Success message
+                    var tourl = "/wechatbaoming/wap/index.php/baoming/pay/id/"+plan_id;
+                    //var tourl = "/wap/index.php/baoming/pay/id/"+plan_id;
+                    window.location.href=tourl;
+
+                    /*// Success message
                     $('#success').html("<div class='alert alert-success'>");
                     $('#success > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
                         .append("</button>");
@@ -97,7 +101,7 @@ $(function() {
                     //clear all fields
                     $('#contactForm').trigger("reset");
                     $("#contactForm").hide();
-                    $("#pay").show();
+                    $("#pay").show();*/
                 },
                 error: function() {
                     // Fail message

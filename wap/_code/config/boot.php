@@ -51,6 +51,11 @@ return array(
     'LIB_DIR'               => "{$root_dir}/_code/lib",
 
     /**
+     * lib所在目录
+     */
+    'PAY_DIR'               => "{$root_dir}/pay/example/",
+
+    /**
      * 配置文件所在目录
      */
     'CONFIG_DIR'            => "{$root_dir}/_code/config",

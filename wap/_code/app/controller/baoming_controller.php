@@ -394,4 +394,12 @@ class Controller_Baoming extends Controller_Main
 	    fwrite($fp, $image);
 	    fclose($fp);
 	}
+
+
+	function actionPay(){
+		$id = intval($this->_context->id);
+		$sdata = Plan::find('id = ?',$id)->getOne();
+
+		$this->_view['sdata'] = $sdata;
+	}
 }
