@@ -20,7 +20,7 @@ function printf_info($data)
 }
 
 //数据设置
-$price = intval($sdata['fee'] * 100);
+$price = intval($orderData['plan']['fee'] * 100);
 $now = time();
 $mnow = microtime();
 //$rcode = substr(date('Y',$now),2,2).date('md',$now).date('His',$now).substr($mnow, 2, 2);//年限
@@ -31,7 +31,7 @@ $openId = $tools->GetOpenid();
 
 //②、统一下单
 $input = new WxPayUnifiedOrder();
-$input->SetBody($sdata['name']);
+$input->SetBody($orderData['plan']['name']);
 $input->SetAttach("吉博");
 $input->SetOut_trade_no($trade_no);
 $input->SetTotal_fee($price);
@@ -111,13 +111,13 @@ $editAddress = $tools->GetEditAddressParameters();
     <div class="container">
         <div class="row">
             <div class="col-md-8">
-                <h3><?=$sdata['name']?></h3>
+                <h3><?=$orderData['plan']['name']?></h3>
                 <div id="pay">
                     <div id="success"><div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><strong>报名信息已经提交,您的用户名是身份证号,密码为身份证后6位. </strong></div></div>
                     <div class="control-group form-group">
                         <div class="controls">
                             <label>费用合计:</label>
-                            <span class="score2">¥<?=$sdata['fee']?></span>
+                            <span class="score2">¥<?=$orderData['plan']['fee']?></span>
                         </div>
                     </div>
                     <button type="button" class="btn btn-primary" onclick="callpay()">马上支付</button>

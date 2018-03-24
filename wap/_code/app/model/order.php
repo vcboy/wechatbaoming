@@ -46,6 +46,10 @@ class Order extends QDB_ActiveRecord_Abstract
                  * 添加对象间的关联
                  */
                 # 'other' => array('has_one' => 'Class'),
+                'plan' => array(
+                    'belongs_to' => 'Plan',
+                    'source_key' => 'plan_id',
+                ),
 
             ),
 

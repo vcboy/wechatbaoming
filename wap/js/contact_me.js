@@ -87,9 +87,10 @@ $(function() {
                 dataType:"json",
                 success: function(res) {
                     //console.log(res.trade_no);
+                    var orderid = res.orderid;
                     if(res.trade_no){
-                        var tourl = "/wechatbaoming/wap/index.php/baoming/pay/id/"+plan_id;
-                        //var tourl = "/wap/index.php/baoming/pay/id/"+plan_id;
+                        var tourl = "/wechatbaoming/wap/index.php/baoming/pay/id/"+orderid;
+                        //var tourl = "/wap/index.php/baoming/pay/id/"+orderid;
                         window.location.href=tourl;
                     }else{
                         $('#success').html("<div class='alert alert-danger'>");

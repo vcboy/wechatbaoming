@@ -268,6 +268,7 @@ class Controller_Baoming extends Controller_Main
 				$orderData = array('order_no'=>$this->order_no,'price'=>$price,'order_time'=>$order_time,'state'=>0,'mid'=>$mid,'plan_id'=>$post['plan_id'],'source'=>2,'sid'=>$sid);
 				$order = new Order($orderData);
 				$order->save();
+				$orderid = $order->id;
 			}
 			//设置登录状态
 			$userarr = array(
@@ -278,7 +279,7 @@ class Controller_Baoming extends Controller_Main
 			);
 			$userstring = json_encode($userarr);
 			setcookie('user',$userstring,time()+3600*24*30*12,'/');
-			$json_return = json_encode(array('result'=>'success','trade_no'=>$this->order_no));
+			$json_return = json_encode(array('result'=>'success','trade_no'=>$this->order_no,'orderid'=>$orderid));
 			echo $json_return;
 			//var_dump($post);
 			exit();
@@ -407,9 +408,10 @@ class Controller_Baoming extends Controller_Main
 	 */
 	function actionPay(){
 		$id = intval($this->_context->id);
-		$sdata = Plan::find('id = ?',$id)->getOne();
-		$this->_view['trade_no'] = $this->order_no;
-		$this->_view['sdata'] = $sdata;
+		//$sdata = Plan::find('id = ?',$id)->getOne();
+		$orderData = Order::find('id = ?',$id)->getOne();
+		$this->_view['trade_no'] = $orderData['order_no'];
+		$this->_view['orderData'] = $orderData;
 	}
 
 	/**
