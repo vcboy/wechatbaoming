@@ -6,6 +6,8 @@
  */
 class Controller_Baoming extends Controller_Main
 {
+	private $order_no = '';
+
 	function actionIndex(){
 		$this->_view['title'] = '地理位置';
 		$signPackage = $this->jssdk->getSignPackage();
@@ -253,12 +255,17 @@ class Controller_Baoming extends Controller_Main
 				$zsinfo->save();
 			}
 			//插入订单信息
+			//$order_no = '';
 			if($mid){
 				$plandata = Plan::find('id = ?',$post['plan_id'])->getOne();
-				$order_no = date('Ymd') . str_pad(mt_rand(1, 99999), 5, '0', STR_PAD_LEFT);
+				$now = time();
+				$mnow = microtime();
+				//$rcode = substr(date('Y',$now),2,2).date('md',$now).date('His',$now).substr($mnow, 2, 2);//年限
+				//$this->order_no = date('Ymd') . str_pad(mt_rand(1, 99999), 5, '0', STR_PAD_LEFT);
+				$this->order_no = substr(date('Y',$now),2,2).date('md',$now).date('His',$now).substr($mnow, 2, 2);//年限
 				$price = $plandata['fee'];
 				$order_time = time();
-				$orderData = array('order_no'=>$order_no,'price'=>$price,'order_time'=>$order_time,'state'=>0,'mid'=>$mid,'plan_id'=>$post['plan_id'],'source'=>2,'sid'=>$sid);
+				$orderData = array('order_no'=>$this->order_no,'price'=>$price,'order_time'=>$order_time,'state'=>0,'mid'=>$mid,'plan_id'=>$post['plan_id'],'source'=>2,'sid'=>$sid);
 				$order = new Order($orderData);
 				$order->save();
 			}
@@ -271,8 +278,8 @@ class Controller_Baoming extends Controller_Main
 			);
 			$userstring = json_encode($userarr);
 			setcookie('user',$userstring,time()+3600*24*30*12,'/');
-			
-			echo 'success';
+			$json_return = json_encode(array('result'=>'success','trade_no'=>$this->order_no));
+			echo $json_return;
 			//var_dump($post);
 			exit();
 		}else{
@@ -395,11 +402,30 @@ class Controller_Baoming extends Controller_Main
 	    fclose($fp);
 	}
 
-
+	/**
+	 * 支付页面
+	 */
 	function actionPay(){
 		$id = intval($this->_context->id);
 		$sdata = Plan::find('id = ?',$id)->getOne();
-
+		$this->_view['trade_no'] = $this->order_no;
 		$this->_view['sdata'] = $sdata;
 	}
+
+	/**
+	 * 支付回调页面
+	 */
+	function actionCallback(){
+		require_once Q::ini ( 'app_config/LIB_DIR' ) . '/notify.php';
+		$dbo = QDB::getConn ();
+		/*$sql= "update exam_admin set pass = '".$newpassword."'
+        		where username = '".$username."'and pass = '".$passwd."' ";
+		$dbo->execute ($sql);*/
+		$notify = new PayNotifyCallBack();
+		$notify->dbo = $dbo;
+		$notify->Handle(false);
+		//$notify->testdb('2018032412048');
+	}
+
+
 }

@@ -23,7 +23,7 @@ function printf_info($data)
 $price = intval($sdata['fee'] * 100);
 $now = time();
 $mnow = microtime();
-$rcode = substr(date('Y',$now),2,2).date('md',$now).date('His',$now).substr($mnow, 2, 2);//年限
+//$rcode = substr(date('Y',$now),2,2).date('md',$now).date('His',$now).substr($mnow, 2, 2);//年限
 
 //①、获取用户openid
 $tools = new JsApiPay();
@@ -32,17 +32,17 @@ $openId = $tools->GetOpenid();
 //②、统一下单
 $input = new WxPayUnifiedOrder();
 $input->SetBody($sdata['name']);
-$input->SetAttach("test");
-$input->SetOut_trade_no($rcode);
+$input->SetAttach("吉博");
+$input->SetOut_trade_no($trade_no);
 $input->SetTotal_fee($price);
 $input->SetTime_start(date("YmdHis"));
 $input->SetTime_expire(date("YmdHis", time() + 600));
-$input->SetGoods_tag("test");
-$input->SetNotify_url("http://paysdk.weixin.qq.com/example/notify.php");
+$input->SetGoods_tag("培训费");
+$input->SetNotify_url("http://wap.vstp.com.cn/wap/index.php/baoming/callback");
 $input->SetTrade_type("JSAPI");
 $input->SetOpenid($openId);
 $order = WxPayApi::unifiedOrder($input);
-echo '<font color="#f00"><b>统一下单支付单信息</b></font><br/>';
+echo '<font color="#f00"><b>统一下单支付单信息'.$trade_no.'</b></font><br/>';
 printf_info($order);
 $jsApiParameters = $tools->GetJsApiParameters($order);
 
@@ -58,8 +58,19 @@ $editAddress = $tools->GetEditAddressParameters();
       'getBrandWCPayRequest',
       <?php echo $jsApiParameters; ?>,
       function(res){
-        WeixinJSBridge.log(res.err_msg);
-        alert(res.err_code+res.err_desc+res.err_msg);
+        if(res.err_msg == "get_brand_wcpay_request:ok" ) {
+          alert('支付成功');
+          var tourl = "/wap/index.php/default/myscore";
+          window.location.href=tourl;
+        }
+        if(res.err_msg == "get_brand_wcpay_request:cancel" ) {
+          alert('取消支付');
+          //var tourl = "/wechatbaoming/wap/index.php/baoming/pay/id/"+plan_id;
+          //window.location.href=tourl;
+        }
+
+        //WeixinJSBridge.log(res.err_msg);
+        //alert(res.err_code+res.err_desc+res.err_msg);
       }
     );
   }

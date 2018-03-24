@@ -65,13 +65,13 @@
         var newElem1 = $('#template').clone().html(); 
         newElem = newElem1.replace(/{n}/g,1);
         $(newElem).appendTo('#clonetd');
-        $('#datetimes_edu1').focus();
+        //$('#datetimes_edu1').focus();
 
         
         var newElem2 = $('#template_work').clone().html(); 
         newElem = newElem2.replace(/{n}/g,1);
         $(newElem).appendTo('#clonetd_work');
-        $('#datetimes_work1').focus();
+        //$('#datetimes_work1').focus();
     };
   })
 </script>

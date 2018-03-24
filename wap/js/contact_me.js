@@ -84,10 +84,22 @@ $(function() {
                     message: message
                 },
                 cache: false,
-                success: function() {
-                    var tourl = "/wechatbaoming/wap/index.php/baoming/pay/id/"+plan_id;
-                    //var tourl = "/wap/index.php/baoming/pay/id/"+plan_id;
-                    window.location.href=tourl;
+                dataType:"json",
+                success: function(res) {
+                    //console.log(res.trade_no);
+                    if(res.trade_no){
+                        var tourl = "/wechatbaoming/wap/index.php/baoming/pay/id/"+plan_id;
+                        //var tourl = "/wap/index.php/baoming/pay/id/"+plan_id;
+                        window.location.href=tourl;
+                    }else{
+                        $('#success').html("<div class='alert alert-danger'>");
+                        $('#success > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
+                            .append("</button>");
+                        $('#success > .alert-danger')
+                            .append("<strong> 订单生成失败 </strong>");
+                        $('#success > .alert-danger')
+                            .append('</div>');
+                    }
 
                     /*// Success message
                     $('#success').html("<div class='alert alert-success'>");
