@@ -6,7 +6,7 @@
  */
 class Controller_Baoming extends Controller_Main
 {
-	private $order_no = '';
+	//private $order_no = '';
 
 	function actionIndex(){
 		$this->_view['title'] = '地理位置';
@@ -248,27 +248,36 @@ class Controller_Baoming extends Controller_Main
 			$jfData = array('mid'=>$mid,'jf'=>$jfscore,'way'=>'register','datetime'=>time());
 			$jf->saveData($jfData);
 
-			//插入招生信息
-			if($post['zs_id']){
-				$zsinfoData = array('plan_id'=>$post['plan_id'],'source'=>2,'sid'=>$sid,'zs_id'=>$post['zs_id'],'mid'=>$mid);
-				$zsinfo = new Zsinfo($zsinfoData);
-				$zsinfo->save();
-			}
+			
 			//插入订单信息
-			//$order_no = '';
+			$order_no = '';
 			if($mid){
 				$plandata = Plan::find('id = ?',$post['plan_id'])->getOne();
 				$now = time();
 				$mnow = microtime();
 				//$rcode = substr(date('Y',$now),2,2).date('md',$now).date('His',$now).substr($mnow, 2, 2);//年限
 				//$this->order_no = date('Ymd') . str_pad(mt_rand(1, 99999), 5, '0', STR_PAD_LEFT);
-				$this->order_no = substr(date('Y',$now),2,2).date('md',$now).date('His',$now).substr($mnow, 2, 2);//年限
+				$order_no = substr(date('Y',$now),2,2).date('md',$now).date('His',$now).substr($mnow, 2, 2);//年限
 				$price = $plandata['fee'];
 				$order_time = time();
-				$orderData = array('order_no'=>$this->order_no,'price'=>$price,'order_time'=>$order_time,'state'=>0,'mid'=>$mid,'plan_id'=>$post['plan_id'],'source'=>2,'sid'=>$sid);
+				$orderData = array('order_no'=>$order_no,'price'=>$price,'order_time'=>$order_time,'state'=>0,'mid'=>$mid,'plan_id'=>$post['plan_id'],'source'=>2,'sid'=>$sid);
 				$order = new Order($orderData);
 				$order->save();
 				$orderid = $order->id;
+
+				//更新报名表
+				$signup = Signup::find('id = ?',$sid)->getOne();
+				$signup->orderid = $orderid;
+				$signup->save();
+			}
+			
+			
+
+			//插入招生信息
+			if($post['zs_id']){
+				$zsinfoData = array('plan_id'=>$post['plan_id'],'source'=>2,'sid'=>$sid,'zs_id'=>$post['zs_id'],'mid'=>$mid);
+				$zsinfo = new Zsinfo($zsinfoData);
+				$zsinfo->save();
 			}
 			//设置登录状态
 			$userarr = array(
@@ -279,7 +288,7 @@ class Controller_Baoming extends Controller_Main
 			);
 			$userstring = json_encode($userarr);
 			setcookie('user',$userstring,time()+3600*24*30*12,'/');
-			$json_return = json_encode(array('result'=>'success','trade_no'=>$this->order_no,'orderid'=>$orderid));
+			$json_return = json_encode(array('result'=>'success','trade_no'=>$order_no,'orderid'=>$orderid));
 			echo $json_return;
 			//var_dump($post);
 			exit();

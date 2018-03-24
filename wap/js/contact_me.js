@@ -62,8 +62,8 @@ $(function() {
             var jf = $("input#jf").val();
 
             $.ajax({
-                url: "/wechatbaoming/wap/baoming/submitform",
-                //url: "/wap/index.php/baoming/submitform",
+                //url: "/wechatbaoming/wap/baoming/submitform",
+                url: "/wap/index.php/baoming/submitform",
                 type: "POST",
                 data: {
                     plan_id: plan_id,
@@ -86,11 +86,11 @@ $(function() {
                 cache: false,
                 dataType:"json",
                 success: function(res) {
-                    //console.log(res.trade_no);
+                    console.log(res.trade_no);
                     var orderid = res.orderid;
                     if(res.trade_no){
-                        var tourl = "/wechatbaoming/wap/index.php/baoming/pay/id/"+orderid;
-                        //var tourl = "/wap/index.php/baoming/pay/id/"+orderid;
+                        //var tourl = "/wechatbaoming/wap/index.php/baoming/pay/id/"+orderid;
+                        var tourl = "/wap/index.php/baoming/pay/id/"+orderid;
                         window.location.href=tourl;
                     }else{
                         $('#success').html("<div class='alert alert-danger'>");

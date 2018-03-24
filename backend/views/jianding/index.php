@@ -60,7 +60,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'raw',
                 'headerOptions' => ['width' => '80'],
                 'value' => function($model){
-                    return $model->is_pay?'已付':'未付';
+                    return $model->is_pay?'<span class="red">已支付</span>':'未支付';
                 }
             ],
             [

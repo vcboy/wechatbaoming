@@ -248,6 +248,7 @@ class Controller_Default extends Controller_Main
         			'course_id' => $value['plan']['course_id'],
         			'fee' => $value['plan']['fee'],
         			'is_pay' => $value['is_pay'],
+        			'orderid' => $value['orderid'],
         		);
         	}
         }

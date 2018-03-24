@@ -63,7 +63,7 @@ $(document).ready(function(){
             <?php
                 }else if($row['is_pay'] == 0){
             ?>
-                <div><button class="btn btn-primary">¥<?=$row['fee']?> 马上支付</button></div>
+                <div><a class="btn btn-primary" href="<?=url('baoming/pay',array('id'=>$row['orderid']))?>">¥<?=$row['fee']?> 马上支付</a></div>
             <?php
                 }else{
             ?>
