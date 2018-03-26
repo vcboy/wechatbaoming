@@ -34,7 +34,8 @@ class NewsController extends CController
     public function actionIndex()
     {
         $searchModel = new NewsSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $where = " and type = 1";
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams,$where);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -69,6 +70,7 @@ class NewsController extends CController
             exit();
             $content = $params['editorValue'];
             $model->content = $content;*/
+            $model->type = 1;
             $model->pic = UploadedFile::getInstance($model, 'pic');
             if($model->pic){
                 //文件上传成功

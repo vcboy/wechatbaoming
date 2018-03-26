@@ -309,7 +309,10 @@
                     <div class="control-group form-group">
                         <div class="controls">
                             <label>身份证:</label>
-                            <input type="text" class="form-control" id="sfz" required data-validation-required-message="请输入身份证号码.">
+                            <input type="text" class="form-control" id="sfz"  
+                            data-validation-regex-regex="(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)" 
+                            data-validation-regex-message="非法的身份证号码" 
+                            >
                         </div>
                     </div>
                     <!-- <div class="control-group form-group">
@@ -334,7 +337,7 @@
                     <div class="control-group form-group">
                         <div class="controls">
                             <label>联系电话:</label>
-                            <input type="tel" class="form-control" id="phone" required data-validation-required-message="Please enter your phone number.">
+                            <input type="number" minlength="7" maxlength="12" class="form-control" id="phone" required data-validation-required-message="请输入身电话号码.">
                         </div>
                     </div>
                     

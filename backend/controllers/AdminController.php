@@ -86,7 +86,9 @@ class AdminController extends CController
     public function actionCreate()
     {
         $model = new Admin();
-
+        $role_name = Yii::$app->request->get('role_name');
+        $role_name = $role_name ? $role_name:'';
+        if($role_name) $model->role_name = $role_name;
         if ($model->load(Yii::$app->request->post())) {
             if($model->save()){
                 return $this->redirect(['index']);

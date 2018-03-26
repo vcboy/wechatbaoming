@@ -39,10 +39,10 @@ class NewsSearch extends News
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params,$where)
     {
         $query = News::find();
-        $query->where('is_delete = 0');
+        $query->where('is_delete = 0'.$where);
         $query->orderBy('id desc');
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

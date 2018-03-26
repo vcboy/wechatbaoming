@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use backend\models\Userbc;
 use backend\models\RoleForm;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\AdminSearch */
@@ -37,7 +38,8 @@ use backend\models\RoleForm;
                         $auth = Yii::$app->authManager;
                         $userid = Yii::$app->user->identity->id;
                         if($auth->checkAccess($userid,'admin_create')) {
-                            echo Html::a('添加', ['create'], ['class' => 'btn btn-sm btn-success']);
+                            $url = Url::to(['admin/create','role_name' => 'zhaosheng']);
+                            echo Html::a('添加', $url, ['class' => 'btn btn-sm btn-success']);
                         }
                         ?>
                     </div>
