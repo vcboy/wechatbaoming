@@ -26,6 +26,15 @@ class Controller_Baoming extends Controller_Main
 	}
 
 	/**
+	 * 活动详情
+	 */
+	function actionPlandetail(){
+		$id = intval($this->_context->id);
+		$plandata = Plan::find('id = ?',$id)->getOne();
+		$this->_view['plandata'] = $plandata;
+	}
+
+	/**
 	 * 动态加载
 	 * @return [type] [description]
 	 */

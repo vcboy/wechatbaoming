@@ -2,9 +2,9 @@
 // $Id$
 
 /**
- * Lecture 封装来自 fy_room 数据表的记录及领域逻辑
+ * Project 封装来自 exam_client_project 数据表的记录及领域逻辑
  */
-class Plan extends QDB_ActiveRecord_Abstract
+class Lession extends QDB_ActiveRecord_Abstract
 {
 
     /**
@@ -28,7 +28,7 @@ class Plan extends QDB_ActiveRecord_Abstract
             ),
 
             // 用什么数据表保存对象
-            'table_name' => 'wx_plan',
+            'table_name' => 'wx_lession',
 
             // 指定数据表记录字段与对象属性之间的映射关系
             // 没有在此处指定的属性，QeePHP 会自动设置将属性映射为对象的可读写属性
@@ -36,6 +36,7 @@ class Plan extends QDB_ActiveRecord_Abstract
             (
                 // 主键应该是只读，确保领域对象的“不变量”
                 'id' => array('readonly' => true),
+
                 /**
                  *  可以在此添加其他属性的设置
                  */
@@ -45,14 +46,6 @@ class Plan extends QDB_ActiveRecord_Abstract
                  * 添加对象间的关联
                  */
                 # 'other' => array('has_one' => 'Class'),
-                'lession' => array(
-                    'belongs_to' => 'Lession',
-                    'source_key' => 'course_id',
-                ),
-                'teacher' => array(
-                    'belongs_to' => 'Teacher',
-                    'source_key' => 'teacher_id',
-                ),
 
             ),
 
@@ -122,11 +115,8 @@ class Plan extends QDB_ActiveRecord_Abstract
              */
             'validations' => array
             (
-                'name' => array
-                (
-                    array('not_empty','名称不能为空'),
 
-                )
+
 
             ),
         );
