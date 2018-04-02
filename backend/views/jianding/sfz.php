@@ -32,7 +32,7 @@
 foreach ($models as $key => $model): 
 ?>
   <div class="sfz">
-    <img src="<?=Yii::$app -> request -> baseUrl.'/../uploads/sfz3.jpg'?>">
+    <img src="<?=Yii::$app -> request -> baseUrl.'/../../wap/'.$model->getMember()->one()->sfz_path.'_z.jpg'?>" width="325">
   </div>
 <?php endforeach ?>
 </div>

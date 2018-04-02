@@ -27,8 +27,7 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="<?=$_BASE_DIR?>js/vendor/jquery-2.1.1.min.js"></script>
     <script src="<?=$_BASE_DIR?>js/vendor/bootstrap.min.js"></script>
-    <script src="<?=$_BASE_DIR?>js/common.js"></script>
-
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
     <script type="text/javascript">
         function back() {
             //window.location.href="<?echo url('/lent')?>"
@@ -50,7 +49,7 @@
               </div>
               
               <div class="thumbnail" style="margin-top: 30px;">                    
-                <a href="<?=$code?>"><img class="img-responsive" src="<?=$_BASE_DIR?>qrcode/qrcode.php?size=8&data=<?echo $code?>" alt=""></a>
+                <a href="<?=$code?>"><img class="img-responsive" src="<?=$_BASE_DIR?>qrcode/qrcode.php?size=8&data=<?echo $link?>" alt=""></a>
               </div>
             </div>
             <p style="text-align: center;">活动二维码</p>
@@ -68,7 +67,7 @@
         </footer>
   </body>
   <script type="text/javascript">
-    wx.config({
+  wx.config({
     /*debug: true,*/
     appId: '<?php echo $signPackage["appId"];?>',
     timestamp: <?php echo $signPackage["timestamp"];?>,
@@ -84,8 +83,8 @@
   wx.ready(function () {
       wx.onMenuShareAppMessage({
         //title: '我的麦能网',
-        desc: "<?=$desc_short?>",
-        //link: $scope.myqrcodeurl,
+        desc: "<?=$plandata['name']?>",
+        link: "<?=$link?>",
         imgUrl: "<?=$wximg?>",
         trigger: function (res) {
           // 不要尝试在trigger中使用ajax异步请求修改本次分享的内容，因为客户端分享操作是一个同步操作，这时候使用ajax的回包会还没有返回
@@ -93,6 +92,7 @@
         },
         success: function (res) {
           //alert('已分享');
+          //alert(JSON.stringify(res));
         },
         cancel: function (res) {
           //alert('已取消');
@@ -103,9 +103,8 @@
       });
 
       wx.onMenuShareTimeline({
-        //title: '我的麦能网',
-        //desc: "<?=$desc_short?>",
-        //link: $scope.myqrcodeurl,
+        title: "<?=$plandata['name']?>",
+        link: "<?=$link?>",
         //imgUrl: 'http://wx.mynep.com/dealer/img/icon.png',
         imgUrl: "<?=$wximg?>",
         trigger: function (res) {

@@ -41,7 +41,7 @@ $(document).ready(function(){
             <? foreach ($list as $i=>$row) { ?>
             <div class="line"></div>
             <div class="newblock1">
-            <a href="<?=url('/signup',array('id'=>$row['id'],'tabletype'=>$row['tabletype']))?>" >
+            <a href="<?=url('/plandetail',array('id'=>$row['id'],'tabletype'=>$row['tabletype']))?>" >
                 <div class="media">
                     <div class="pull-left planlistl">
                         <img src="<?=$_BASE_DIR.'../backend/'.$row['img']?>" width="100%" height="85px" />

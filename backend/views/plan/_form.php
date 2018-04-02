@@ -19,6 +19,7 @@ use yii\helpers\Url;
 
     <?= $form->field($model, 'tabletype')->dropDownList(array(''=>'--请选择--')+$tabletype,['class'=>'input-big form-control','id'=>'tabletype']) ?>
 
+    <?= $form->field($model, 'company')->textInput() ?>
     <?= $form->field($model, 'bkfx')->textInput() ?>
     <?= $form->field($model, 'bkzs')->textInput() ?>
     <?= $form->field($model, 'zsdj')->textInput() ?>
@@ -59,6 +60,7 @@ use yii\helpers\Url;
     $(function(){
         var tabletype = $("#tabletype").val();
         if(tabletype != 2){
+            $(".field-plan-company").hide();
             $(".field-plan-bkfx").hide();
             $(".field-plan-bkzs").hide();
             $(".field-plan-zsdj").hide(); 
@@ -67,10 +69,12 @@ use yii\helpers\Url;
         $("#tabletype").change(function () {
             var ss = $(this).val();
             if(ss== 2) {
+                $(".field-plan-company").show();
                 $(".field-plan-bkfx").show();
                 $(".field-plan-bkzs").show();
                 $(".field-plan-zsdj").show();
             } else{
+                $(".field-plan-company").hide();
                 $(".field-plan-bkfx").hide();
                 $(".field-plan-bkzs").hide();
                 $(".field-plan-zsdj").hide();

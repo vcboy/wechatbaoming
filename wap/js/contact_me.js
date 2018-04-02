@@ -13,7 +13,7 @@ $(function() {
         submitSuccess: function($form, event) {
             event.preventDefault(); // prevent default submit behaviour
             // get values from FORM
-            var company = $("input#company").val();
+            //var company = $("input#company").val();
             var name = $("input#name").val();           
             var sex = $("input[name='sex']:checked").val();
             //console.log(sex);
@@ -59,6 +59,8 @@ $(function() {
             var message = $("textarea#message").val();
             var plan_id = $('input#plan_id').val();
             var userid = $("input#userid").val();
+            var mid = $("input#mid").val();
+            var zsid = $("input#zsid").val();
             var jf = $("input#jf").val();
 
             $.ajax({
@@ -69,7 +71,7 @@ $(function() {
                     plan_id: plan_id,
                     zs_id: userid,
                     jf: jf,
-                    company: company,
+                    //company: company,
                     name: name,
                     nation: nation,
                     birthday: birthday,
@@ -81,6 +83,8 @@ $(function() {
                     //bkfx: bkfx,
                     education: education,
                     job: job,
+                    mid: mid,
+                    zsid: zsid,
                     message: message
                 },
                 cache: false,

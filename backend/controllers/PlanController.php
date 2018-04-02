@@ -187,7 +187,7 @@ class PlanController extends CController
         $id = $request->get('id');
         $tabletype = $request->get('tabletype');
         $push_url = Url::to(['live/wap','id'=>$id,'tabletype'=>$tabletype]);
-        $url = "/wap/index.php/baoming/signup/id/".$id."/tabletype/".$tabletype;
+        $url = "/wap/index.php/baoming/plandetail/id/".$id."/tabletype/".$tabletype;
         $role_name = Yii::$app->user->identity->role_name;
         $zs_id = Yii::$app->user->identity->id;
         if($role_name == 'zhaosheng'){

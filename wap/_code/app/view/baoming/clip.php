@@ -34,7 +34,7 @@
     <a class="license">
       <img id="img-1" src="images/logo_n.png">
     </a>
-    <input id="file0" class="file-3" type="file" size="30" onchange="javascript:setImagePreview();" accept="image/*" capture="camera" />
+    <input id="file0" class="file-3" type="file" size="30" onchange="javascript:setImagePreview();" accept="image/*" multiple />
   </div>
   <div class="yulan">
     <img src="" id="img0" >

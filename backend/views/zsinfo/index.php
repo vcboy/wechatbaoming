@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-
+use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\ZsinfoSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => "plan_id",
                 'format' => 'raw',
                 'value' => function($model){
-                        return $model->plan_id?$model->getPlan()->one()->name:'';
+                        return $model->plan_id?($model->getPlan()->one()!==null?$model->getPlan()->one()->name:''):'';
                 },
             ],
             [
@@ -46,7 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => "mid",
                 'format' => 'raw',
                 'value' => function($model){
-                        return $model->mid?$model->getMember()->one()->name:'';
+                        return $model->mid?($model->getMember()->one()!==null?$model->getMember()->one()->name:''):'';
                 },
             ],
             [
@@ -54,21 +54,32 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'raw',
                 'headerOptions' => ['width' => '80'],
                 'value' => function($model){
-                    return $model->is_pay?'已付':'未付';
+                    return $model->is_pay?'<span class="red">已支付</span>':'未支付';
                 }
             ],
             [
                 'attribute' => "zs_id",
                 'format' => 'raw',
                 'value' => function($model){
-                        return $model->zs_id?$model->getZs()->one()->name:'';
+                        return $model->zs_id?($model->getZs()->one()!==null?$model->getZs()->one()->name:''):'';
                 },
             ],
             [
                 'class' => 'yii\grid\ActionColumn',
                 'header' => '操作',
-                'template' => ' {delete}',
+                'template' => '{view} {delete}',
                 'buttons' => [
+                    'view' => function($url, $model){
+                        $options = [
+                            'title' => '查看',
+                            'aria-label' => Yii::t('yii', 'View'),
+                            'data-pjax' => '0',
+                            'class' => 'btn-xs btn btn-info',
+                            'target' => '_blank',
+                        ];
+                        $url = Url::to(['jianding/view','id'=>$model->sid]);
+                        return Html::a('<i class="icon-zoom-in bigger-120"></i>', $url, $options);
+                    },
                     'update' => function ($url, $model, $key) {
                         $options = [
                             'title' => '修改',

@@ -21,14 +21,18 @@
       }
     }
     if(isset($sigupinfo)){
-      echo "$('#company').val('".$sigupinfo['company']."');\n";    
+      //echo "$('#company').val('".$sigupinfo['company']."');\n";    
       echo "var edu = '".$sigupinfo['education']."';\n";
       echo "var job = '".$sigupinfo['job']."';\n";
+      echo "if(edu){\n";
       echo "var eduobj = JSON.parse(edu);\n";
+      echo "} \n";
       echo "console.log(eduobj);\n";
-
+      echo "if(job){\n";
       echo "var jobobj = JSON.parse(job);\n";
+      echo "} \n";
     ?>
+    if(edu){
       for(var i in eduobj){
         n = parseInt(i)+1;
           console.log(n);
@@ -41,7 +45,10 @@
           $('#major_edu'+n).val(eduobj[i][2]);
           $('#education_edu'+n).val(eduobj[i][3]);
       }
+    }
 
+
+    if(job){
       for(var i in jobobj){
         n = parseInt(i)+1;
           console.log(n);
@@ -54,6 +61,7 @@
         $('#major_work'+n).val(jobobj[i][2]);
         //$('#datetimes_work'+n).val(jobobj[i][3]);
       }
+    }
     <?
     }else{
       echo "init();\n";
@@ -244,20 +252,26 @@
                 <h3>浙江省电子商务专业人才鉴定申请表</h3>
                 <form name="sentMessage" id="contactForm" novalidate>
                     <!--input输入框-->
-                    <div class="control-group form-group">
+                    <!-- <div class="control-group form-group">
                         <div class="controls">
                             <label>申报单位:</label>
                             <input type="text" class="form-control" id="company" required data-validation-required-message="请输入申报单位名称.">
                             <p class="help-block"></p>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="control-group form-group">
                         <div class="controls">
                             <label>姓名:</label>
-                            <input type="text" class="form-control" id="name" required data-validation-required-message="请输入姓名.">
+                            <input type="text" class="form-control" id="name" value="<?=$name?>" required data-validation-required-message="请输入姓名.">
                             <p class="help-block"></p>
                         </div>
-                    </div>                    
+                    </div>  
+                    <div class="control-group form-group">
+                        <div class="controls">
+                            <label>联系电话:</label>
+                            <input type="number" minlength="7" maxlength="12" value="<?=$tel?>" class="form-control" id="phone" required data-validation-required-message="请输入身电话号码.">
+                        </div>
+                    </div>                  
                     <!--单选-->
                     <div class="control-group form-group">
                         <div class="controls">
@@ -334,12 +348,7 @@
                         </div>
                     </div> -->
                     
-                    <div class="control-group form-group">
-                        <div class="controls">
-                            <label>联系电话:</label>
-                            <input type="number" minlength="7" maxlength="12" class="form-control" id="phone" required data-validation-required-message="请输入身电话号码.">
-                        </div>
-                    </div>
+                    
                     
                     <div id = "template"  style="display: none">
                       <div id="entry{n}" class="clonedInput divedu">
@@ -445,7 +454,8 @@
                     <input type="hidden" name="plan_id" id="plan_id" value="<?=$plan_id?>">
                     <input type="hidden" name="userid" id="userid" value="<?=$userid?>">
                     <input type="hidden" name="jf" id="jf" value="<?=$plandata['jf']?>">
-
+                    <input type="hidden" name="mid" id="mid" value="<?=$mid?>">
+                    <input type="hidden" name="zsid" id="zsid" value="<?=$zsid?>">
                     <button type="submit" class="btn btn-primary">提交报名</button>
                 </form>
 

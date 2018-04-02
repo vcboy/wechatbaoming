@@ -13,7 +13,7 @@
                     <!--input输入框-->
                     <div class="control-group form-group">
                         <div class="controls">
-                            <label>申报单位:</label> <?=$sdata['company']?>
+                            <label>申报单位:</label> <?=$sdata['plan']['company']?>
                         </div>
                     </div>
                     <div class="control-group form-group">
@@ -50,17 +50,17 @@
                     </div>
                     <div class="control-group form-group">
                         <div class="controls">
-                            <label>报考证书:</label> <?=$sdata['bkzs']?>
+                            <label>报考证书:</label> <?=$sdata['plan']['bkzs']?>
                         </div>
                     </div>
                     <div class="control-group form-group">
                         <div class="controls">
-                            <label>证书等级:</label> <?=$sdata['zsdj']?>
+                            <label>证书等级:</label> <?=$sdata['plan']['zsdj']?>
                         </div>
                     </div>
                     <div class="control-group form-group">
                         <div class="controls">
-                            <label>报考方向:</label> <?=$sdata['bkfx']?>
+                            <label>报考方向:</label> <?=$sdata['plan']['bkfx']?>
                         </div>
                     </div>
                     

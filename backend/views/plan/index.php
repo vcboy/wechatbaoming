@@ -161,7 +161,7 @@ $this->params['breadcrumbs'][] = $this->title;
     })
 
     function liveshare(id,tabletype){
-        var url = "/wap/index.php/baoming/signup/id/"+id+"/tabletype/"+tabletype;
+        var url = "/wap/index.php/baoming/plandetail/id/"+id+"/tabletype/"+tabletype;
         <?php
         $role_name = Yii::$app->user->identity->role_name;
         $zs_id = Yii::$app->user->identity->id;

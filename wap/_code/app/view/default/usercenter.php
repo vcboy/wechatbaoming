@@ -78,30 +78,27 @@
                     <div class="control-group form-group">
                         <div class="controls">
                             <label>证件照:</label>
+                            <a href="<?=url('baoming/clipzj')?>"><button type="button" class="btn btn-info  " id="scancardzj">证件照片</button></a>
                             <?php
                             if($member['pic_path']) {
                                 echo '已上传';
-                            }else{
-                            ?>
-                            <a href="<?=url('baoming/clipzj')?>"><button type="button" class="btn btn-info  " id="scancardzj">证件照片</button></a>
-                            <?    
                             }
                             ?>
+                            
+    
                         </div>
                     </div>
 
                     <div class="control-group form-group">
                         <div class="controls">
                             <label>身份证:</label>
+                            <a href="<?=url('baoming/clip')?>"><button type="button" class="btn btn-info  " id="scancard">上传身份证</button></a>
                             <?php
                             if($member['sfz_path']){
                                 echo '已上传';
-                            }else{
-                            ?>
-                            <a href="<?=url('baoming/clip')?>"><button type="button" class="btn btn-info  " id="scancard">上传身份证</button></a>
-                            <?
                             }
                             ?>
+                            
                         </div>
                     </div>
                     <div id="success"></div>

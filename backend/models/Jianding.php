@@ -37,7 +37,7 @@ class Jianding extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['company', 'name', 'nation', 'birthday', 'sfz', 'tel', 'plan_id'], 'required','message'=>'{attribute}不能为空'],
+            [['name', 'nation', 'birthday', 'sfz', 'tel', 'plan_id'], 'required','message'=>'{attribute}不能为空'],
             [['sex', 'plan_id'], 'integer'],
             [['education', 'job'], 'string'],
             [['score'], 'number'],
@@ -79,6 +79,10 @@ class Jianding extends \yii\db\ActiveRecord
 
     public function getZs(){
         return $this->hasOne(Admin::className(), ['id' => 'zs_id']);
+    }
+
+    public function getMember(){
+        return $this->hasOne(Member::className(), ['cid' => 'sfz']);
     }
 
 

@@ -51,7 +51,7 @@
         </td>
         <td colspan="4">
           <p>
-            <?=$model->company?>
+            <?=$model->getPlan()->one()->company?>
           </p>
         </td>
         <td rowspan="5" width="25%">
@@ -87,7 +87,7 @@
         </td>
         <td>
           <p>
-            <?=$model->company==1?'男':'女'?>
+            <?=$model->sex==1?'男':'女'?>
           </p>
         </td>
       </tr>

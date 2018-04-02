@@ -30,8 +30,10 @@ class Controller_Baoming extends Controller_Main
 	 */
 	function actionPlandetail(){
 		$id = intval($this->_context->id);
+		$userid = intval($this->_context->userid);
 		$plandata = Plan::find('id = ?',$id)->getOne();
 		$this->_view['plandata'] = $plandata;
+		$this->_view['userid'] = $userid;
 	}
 
 	/**
@@ -130,6 +132,88 @@ class Controller_Baoming extends Controller_Main
 		$tabletype = $this->_context->tabletype;
 		$id = $this->_context->id;
 		$userid = intval($this->_context->userid);
+		$mid = $zsid = 0;
+		$name = $mobile = '';
+		if($this->_context->isPOST()){
+			$name = $this->_context->name;
+			$mobile = $this->_context->mobile;
+
+			//同步插入member表
+			$member = Member::find('tel = ?',$mobile)->getOne();
+			$mid = $member['id'];
+			//插入会员
+			if(empty($mid)){
+				$memberData = array('name'=>$name,'tel'=>$mobile,'source'=>$tabletype,'datetime'=>time());
+				$member = new Member($memberData);
+				$member->save();
+				$mid = $member->id;
+			}
+			//插入招生信息
+			//$zsid = 0;
+			if($userid){
+				$zsinfoData = array('plan_id'=>$id,'source'=>2,'zs_id'=>$userid,'mid'=>$mid);
+				$zsinfo = new Zsinfo($zsinfoData);
+				$zsinfo->save();
+				$zsid = $zsinfo->id;
+			}
+			//设置登录状态
+			/*$userarr = array(
+				'id'   => $mid,
+				'name' => $post['name'],
+				'cid'  => $post['sfz'],
+				'username'	=> $post['sfz'],
+			);
+			$userstring = json_encode($userarr);
+			setcookie('user',$userstring,time()+3600*24*30*12,'/');*/
+			$this->_view['name'] = $name;
+			$this->_view['tel'] = $mobile;
+			$this->_view['zsid'] = $zsid;
+			$this->_view['mid'] = $mid;			
+		}
+		$userstr = @$_COOKIE['user'];
+		if($userstr){
+			$user = json_decode($userstr,true);
+			if($user['id']){
+				$member = Member::find('id = ?',$user['id'])->getOne();		
+				$this->_view['member'] = $member;
+				$cid = $member['cid'];
+				$this->getSigupByCid($tabletype,$cid);
+			}
+		}        
+
+		switch ($tabletype) {
+			case '1':
+				$this->table1();
+				break;
+			case '2':
+				$this->table2($id,'plan');
+				break;
+			case '3':
+				$this->table3();
+				break;
+			case '4':
+				$this->table4();
+				break;
+			default:
+				# code...
+				$this->table1();
+				break;
+		}
+		
+		$signPackage = $this->jssdk->getSignPackage();
+		$this->_view['signPackage'] = $signPackage;
+		$this->_viewname = 'signup'.$tabletype;
+		$this->_view['tabletype'] = $tabletype;
+		$this->_view['plan_id'] = $id;
+		$this->_view['userid'] = $userid;
+	}
+
+	function actionSignupBak(){
+		$this->_view['title'] = '报名';
+		
+		$tabletype = $this->_context->tabletype;
+		$id = $this->_context->id;
+		$userid = intval($this->_context->userid);
 
 		$userstr = @$_COOKIE['user'];
 		if($userstr){
@@ -204,6 +288,7 @@ class Controller_Baoming extends Controller_Main
 	}
 
 	function getSigupByCid($tabletype,$cid){
+		$sigupinfo = array();
 		switch ($tabletype) {
 			case '1':
 				
@@ -240,15 +325,28 @@ class Controller_Baoming extends Controller_Main
 			//$jfscore = $jf->jfconfig();
 			$jfscore = $post['jf'];
 			//同步插入member表
-			$member = Member::find('cid = ?',$post['sfz'])->getOne();
-			$mid = $member['id'];
+			//$member = Member::find('cid = ?',$post['sfz'])->getOne();
+			//$mid = $member['id'];
+			$mid = $post['mid'];
 			//插入会员
+			$pass = substr($post['sfz'], -6,6);
 			if(empty($mid)){
-				$pass = substr($post['sfz'], -6,6);
+				
 				$memberData = array('name'=>$post['name'],'cid'=>$post['sfz'],'birthday'=>$post['birthday'],'sex'=>$post['sex'],'nation'=>$post['nation'],'tel'=>$post['tel'],'username'=>$post['sfz'],'pass'=>$pass,'jf'=>$jfscore,'source'=>2,'sid'=>$sid,'datetime'=>time());
 				$member = new Member($memberData);
 				$member->save();
 				$mid = $member->id;
+			}else{
+				$member = Member::find('id = ?',$mid)->getOne();
+				$member->sid = $sid;
+				$member->cid = $post['sfz'];
+				$member->birthday = $post['birthday'];
+				$member->sex = $post['sex'];
+				$member->nation = $post['nation'];
+				$member->username = $post['sfz'];
+				$member->jf = $jfscore;
+				$member->pass = $pass;
+				$member->save();
 			}								
 			
 			//var_dump($memberData);			
@@ -283,9 +381,12 @@ class Controller_Baoming extends Controller_Main
 			
 
 			//插入招生信息
-			if($post['zs_id']){
-				$zsinfoData = array('plan_id'=>$post['plan_id'],'source'=>2,'sid'=>$sid,'zs_id'=>$post['zs_id'],'mid'=>$mid);
-				$zsinfo = new Zsinfo($zsinfoData);
+			$zsid = $post['zsid'];
+			if($zsid){
+				/*$zsinfoData = array('plan_id'=>$post['plan_id'],'source'=>2,'sid'=>$sid,'zs_id'=>$post['zs_id'],'mid'=>$mid);
+				$zsinfo = new Zsinfo($zsinfoData);*/
+				$zsinfo = Zsinfo::find('id = ?',$zsid)->getOne();
+				$zsinfo->sid = $sid;
 				$zsinfo->save();
 			}
 			//设置登录状态

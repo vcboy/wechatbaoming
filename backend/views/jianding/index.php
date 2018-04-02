@@ -44,7 +44,13 @@ $this->params['breadcrumbs'][] = $this->title;
                         return $model->plan_id?$model->getPlan()->one()->name:'';
                 },
             ],
-            'company',
+            [
+                'attribute' => "company",
+                'format' => 'raw',
+                'value' => function($model){
+                        return $model->plan_id?$model->getPlan()->one()->company:'';
+                },
+            ],
             'name',
             //'sex',
             [

@@ -54,7 +54,7 @@
 <div class="foot-use">
   <div class="uploader1 blue">
     <input type="button" name="file" class="button" value="打开">
-    <input id="file" type="file" onchange="javascript:setImagePreview();" accept="image/*" multiple  capture="camera"  />
+    <input id="file" type="file" onchange="javascript:setImagePreview();" accept="image/*" multiple   />
   </div>
   <button id="clipBtn">截取</button>
 </div>

@@ -332,26 +332,27 @@ class Controller_Default extends Controller_Main
 			$user = json_decode($userstr,true);
 		}
         if(!isset($user['id'])){
-            return $this->_redirect( url('default/login'));
+            return $this->_redirect( url('default/zslogin'));
         }
         $id = $this->_context->id;
         $tabletype = $this->_context->tabletype;
         $userid = $user['id'];
-        $code = url('baoming/signup',array('id'=>$id,'tabletype'=>$tabletype,'userid'=>$userid));
+        $code = url('baoming/plandetail',array('id'=>$id,'tabletype'=>$tabletype,'userid'=>$userid));
+        $link = "http://".$_SERVER['SERVER_NAME'].$code;
         $this->_view['code'] = $code;
 		//$code = 
 		//
 		require_once Q::ini ( 'app_config/LIB_DIR' ) . '/jssdk.php';
-    	$appid = 'wx6f15d9b62099ce85';
-    	$appsecret = 'd22be8116e26f564cf3fd0289a5caef2';
+    	$appid = 'wxd271d62698fcc4a6';
+    	$appsecret = 'd04db7b54349fb1172536685abe6f046';
         $jssdk = new JSSDK($appid, $appsecret);
         $signPackage = $jssdk->GetSignPackage();
         $this->_view['signPackage'] = $signPackage;
 
         $plandata = Plan::find('id = ?',$id)->getOne();
-        $this->_view['wximg'] = 'http://www.zjnep.com/sims'.$plandata['img'];
-		$this->_view['desc_short'] = $plandata['name'];
-		$this->_view['link'] = '';
+        $this->_view['wximg'] = "http://".$_SERVER['SERVER_NAME'].'/backend/'.$plandata['img'];
+		$this->_view['plandata'] = $plandata;
+		$this->_view['link'] = $link;
 	}
 
 
