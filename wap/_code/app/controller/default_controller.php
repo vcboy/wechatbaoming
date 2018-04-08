@@ -356,5 +356,48 @@ class Controller_Default extends Controller_Main
 	}
 
 
+	/**
+	 * 用户中心
+	 */
+	function actionTax(){
+		//$this->checkLogin();
+		//$user = $this->_app->currentUser();
+		$userstr = $_COOKIE['user'];
+		if($userstr){
+			$user = json_decode($userstr,true);
+		}
+        if(!isset($user['id'])){
+            return $this->_redirect( url('default/login'));
+        }
+        //return  $this->check();
+		$member = Member::find('id = ?',$user['id'])->getOne();
+		$this->_view['member'] = $member;
+		$taxrecords = Taxrecord::find('mid = ?',$user['id'])->getAll();
+		$this->_view['taxrecords'] = $taxrecords;
+
+		if($this->_context->isPOST() && $this->_context->taxnum>0){
+			$taitou = $this->_context->taitou;
+			$taxno = $this->_context->taxno;
+			$taxnum = $this->_context->taxnum;
+			$taxed = ($member['taxed'] + $taxnum)>$member['totalfee']?$member['totalfee']:($member['taxed'] + $taxnum);
+			$member->taitou = $taitou;
+			$member->taxno = $taxno;
+			$member->taxed = $taxed;
+			$member->save();
+
+			//保存开票记录
+			$taxrecord = new Taxrecord();
+			$taxrecord->taitou = $taitou;
+			$taxrecord->taxno = $taxno;
+			$taxrecord->taxnum = $taxnum;
+			$taxrecord->mid = $user['id'];
+			$taxrecord->tax_time = time();
+			$taxrecord->save();
+			return $this->_redirect( url('default/tax'));
+		}
+
+	}
+
+
 }
 

@@ -58,7 +58,7 @@
         </div>
     <!-- /.container -->
 </div>
-<div class="dt_join_bar"  data-toggle="modal" data-target="#myModal">我要报名</div>
+<div class="clickable"  data-toggle="modal" data-target="#myModal">我要报名</div>
 <style type="text/css">
 a:visited { 
     text-decoration: none; 

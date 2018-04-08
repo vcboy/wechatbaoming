@@ -12,6 +12,7 @@ function checkall(checked, p, name) {
  */
 function update_record(url, id,title){
 	var list = $("[name='ckbox[]']:checked");
+	//console.log(list);
 	if(list.length<1){
 		swal({   title: title,   timer: 2000,   showConfirmButton: false });
 		return false;

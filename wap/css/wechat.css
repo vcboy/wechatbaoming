@@ -425,7 +425,7 @@ a:hover {
 	border-top: 1px solid #eeeef4;
 }
 
-.dt_join_bar {
+.clickable {
     width: 100%;
     height: 52px;
     background-color: #FFF;
@@ -438,4 +438,5 @@ a:hover {
     color: #fff;
     font-size: 20px;
     line-height: 52px;
+    cursor: pointer;
 }
